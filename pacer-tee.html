@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pacer Tee | VANTAGE Running</title>
+<link rel="icon" type="image/png" href="Images/logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+
+let images = [
+"Images/pacerteeimage1.jpg",
+"Images/pacerteeimage2.jpg",
+"Images/pacerteeimage3.jpg",
+"Images/pacerteeimage4.jpg",
+"Images/pacerteeimage5.jpg"
+];
+
+
+let currentImage = 0;
+
+
+function changeImage(direction){
+
+currentImage = currentImage + direction;
+
+
+if(currentImage < 0){
+    currentImage = images.length - 1;
+}
+
+
+if(currentImage >= images.length){
+    currentImage = 0;
+}
+
+
+document.getElementById("product-image").src = images[currentImage];
+
+}
+
+</script>
+<body>
+
+<header>
+
+<h1>VANTAGE</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="shop.html">Shop</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+
+<section class="product-page">
+
+<div class="slideshow">
+
+<button class="slide-button left" onclick="changeImage(-1)">&#10094;</button>
+
+<img id="product-image" src="Images/pacerteeimage1.jpg">
+
+<button class="slide-button right" onclick="changeImage(1)">&#10095;</button>
+
+</div>
+
+<div class="product-info">
+
+<h2>VANTAGE Pacer Tee</h2>
+
+<h3>$39.99 NZD</h3>
+
+
+<p>
+Born in Lower Hutt, built for New Zealand. The VANTAGE Pacer Tee is designed for runners who take their training seriously but still want to look sharp doing it.
+</p>
+
+
+<p>
+Featuring the iconic Vantage logo, this shirt turns heads on and off the run. Lightweight and comfortable enough for long distances, but stylish enough to wear straight from the finish line to the café.
+</p>
+
+
+<ul>
+<li>100% recycled polyester</li>
+<li>NZ owned and operated supplier</li>
+<li>Screen printed here in Lower Hutt</li>
+</ul>
+
+
+<p>
+Finnigan is 5'9"/176cm and 63kg and wears size Medium.
+</p>
+
+
+
+</div>
+
+<div class="options">
+
+
+<h3>Colour</h3>
+
+<select id="colour">
+
+<option>Black</option>
+
+</select>
+
+
+
+<h3>Size</h3>
+
+<select id="size" onchange="changeSize()">
+
+<option value="small">Small</option>
+
+<option value="medium">Medium</option>
+
+</select>
+
+
+<br><br>
+
+
+<form id="paypalForm" action="https://www.paypal.com/ncp/payment/DMXAHQHRQG9N2" method="post" target="_blank">
+
+<input class="buy-button" type="submit" value="Buy Now">
+
+</form>
+
+
+</div>
+
+
+<script>
+
+function changeSize(){
+
+let size = document.getElementById("size").value;
+
+let paypalForm = document.getElementById("paypalForm");
+
+
+if(size == "small"){
+
+paypalForm.action = "https://www.paypal.com/ncp/payment/DMXAHQHRQG9N2";
+
+}
+
+
+if(size == "medium"){
+
+paypalForm.action = "https://www.paypal.com/ncp/payment/Q6EV3CRRMTRC6";
+
+}
+
+}
+
+</script>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 VANTAGE Running</p>
+
+<p>
+Instagram:
+<a href="https://www.instagram.com/vantage.running" target="_blank">
+@vantage.running
+</a>
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
