@@ -41,6 +41,8 @@ nav a {
 
     position:relative;
 
+    overflow:hidden;
+
     background-image:
     linear-gradient(
     rgba(0,0,0,0.45),
@@ -83,11 +85,11 @@ transition:opacity 1.5s ease;
 
 .hero-content {
 
-position:relative;
+    position:relative;
 
-z-index:2;
+    z-index:2;
 
-max-width:700px;
+    max-width:700px;
 
 }
 
@@ -107,6 +109,8 @@ max-width:700px;
     opacity:0;
 
     transition:opacity 1.5s ease;
+
+    z-index:1;
 
 }
 
@@ -165,7 +169,7 @@ font-weight:bold;
 
 
 .page {
-    padding:80px;
+    padding:80px 60px;
     text-align:left;
 }
 
@@ -457,3 +461,59 @@ footer a:hover {
     text-decoration:underline;
 }
 
+.shop-grid {
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+
+    gap:40px;
+
+    margin-top:40px;
+
+}
+
+
+.product-card {
+
+    text-decoration:none;
+
+    color:black;
+
+    transition:0.3s;
+
+}
+
+
+.product-card img {
+
+    width:100%;
+
+    display:block;
+
+}
+
+
+.product-card h3 {
+
+    font-size:24px;
+
+    margin:15px 0 5px;
+
+}
+
+
+.product-card p {
+
+    font-size:18px;
+
+    margin:0;
+
+}
+
+
+.product-card:hover {
+
+    transform:translateY(-5px);
+
+}
