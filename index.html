@@ -6,6 +6,62 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<script>
+
+const heroImages = [
+"Images/hero1.png",
+"Images/hero2.jpg",
+"Images/hero3.jpg"
+];
+
+
+let currentHero = 0;
+
+
+function changeHero(){
+
+let overlay = document.querySelector(".hero-overlay");
+
+
+currentHero++;
+
+
+if(currentHero >= heroImages.length){
+    currentHero = 0;
+}
+
+
+overlay.style.backgroundImage =
+`linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
+url('${heroImages[currentHero]}')`;
+
+
+overlay.style.opacity = "1";
+
+
+setTimeout(() => {
+
+document.getElementById("hero").style.backgroundImage =
+overlay.style.backgroundImage;
+
+
+overlay.style.opacity = "0";
+
+
+}, 1500);
+
+
+}
+
+
+setInterval(changeHero,5000);
+
+
+</script>
+
 <body>
 
 <header>
@@ -19,13 +75,27 @@
 </header>
 
 
-<section class="hero">
-    <h2>Built By Athletes.<br>Driven By The Community.</h2>
-    <p>
-        VANTAGE Running is a Lower Hutt running brand created by athletes,
-        for people who love the sport.
-    </p>
-    <a class="button" href="shop.html">Shop Now</a>
+<section class="hero" id="hero">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<h2>
+Built by runners.<br>
+Made in Lower Hutt.
+</h2>
+
+<p>
+Performance apparel designed for New Zealand runners.
+</p>
+
+<a href="shop.html" class="button">
+Shop Now
+</a>
+
+</div>
+
 </section>
 
 
