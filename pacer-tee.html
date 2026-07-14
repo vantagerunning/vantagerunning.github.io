@@ -7,46 +7,15 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<script>
-
-let images = [
-"Images/pacerteeimage1.jpg",
-"Images/pacerteeimage2.jpg",
-"Images/pacerteeimage3.jpg",
-"Images/pacerteeimage4.jpg",
-"Images/pacerteeimage5.jpg"
-];
-
-
-let currentImage = 0;
-
-
-function changeImage(direction){
-
-currentImage = currentImage + direction;
-
-
-if(currentImage < 0){
-    currentImage = images.length - 1;
-}
-
-
-if(currentImage >= images.length){
-    currentImage = 0;
-}
-
-
-document.getElementById("product-image").src = images[currentImage];
-
-}
-
-</script>
 <body>
+
+   
 
 <header>
 
-<h1>VANTAGE</h1>
-
+<a href="index.html" class="logo">
+    VANTAGE
+</a>
 <nav>
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
@@ -61,13 +30,41 @@ document.getElementById("product-image").src = images[currentImage];
 
 <div class="slideshow">
 
-<button class="slide-button left" onclick="changeImage(-1)">&#10094;</button>
+<div class="gallery">
 
-<img id="product-image" src="Images/pacerteeimage1.jpg">
+    <div class="main-image">
 
-<button class="slide-button right" onclick="changeImage(1)">&#10095;</button>
+        <button class="gallery-arrow left-arrow" onclick="changeImage(-1)">
+            &#10094;
+        </button>
+
+
+        <img id="mainImage" src="Images/pacerteeimage1.jpg">
+
+
+        <button class="gallery-arrow right-arrow" onclick="changeImage(1)">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <div class="thumbnails">
+
+        <img src="Images/pacerteeimage1.jpg" onclick="setImage(0)">
+        <img src="Images/pacerteeimage2.jpg" onclick="setImage(1)">
+        <img src="Images/pacerteeimage3.jpg" onclick="setImage(2)">
+        <img src="Images/pacerteeimage4.jpg" onclick="setImage(3)">
+        <img src="Images/pacerteeimage5.jpg" onclick="setImage(4)">
+
+    </div>
 
 </div>
+
+
+</div>
+
+<div class="purchase-panel">
 
 <div class="product-info">
 
@@ -101,66 +98,248 @@ Finnigan is 5'9"/176cm and 63kg and wears size Medium.
 
 </div>
 
+
+
 <div class="options">
+
+<h3>Size</h3>
+
+<div class="button-group">
+
+<button class="option selected" id="smallBtn" onclick="selectSize('small')">Small</button>
+
+<button class="option" id="mediumBtn" onclick="selectSize('medium')">Medium</button>
+
+</div>
 
 
 <h3>Colour</h3>
 
-<select id="colour">
+<div class="button-group">
 
-<option>Black</option>
+<button class="option selected">
+Black
+</button>
 
-</select>
-
-
-
-<h3>Size</h3>
-
-<select id="size" onchange="changeSize()">
-
-<option value="small">Small</option>
-
-<option value="medium">Medium</option>
-
-</select>
+</div>
 
 
-<br><br>
+<h3>Shipping</h3>
 
+<div class="button-group">
 
-<form id="paypalForm" action="https://www.paypal.com/ncp/payment/DMXAHQHRQG9N2" method="post" target="_blank">
+<button class="option selected" id="pickupBtn" onclick="selectShipping('pickup')">
+Pickup
+</button>
+
+<button class="option" id="standardBtn" onclick="selectShipping('standard')">
+Standard
+</button>
+
+<button class="option" id="ruralBtn" onclick="selectShipping('rural')">
+Rural
+</button>
+
+<form id="paypalForm" action="" method="post" target="_blank">
 
 <input class="buy-button" type="submit" value="Buy Now">
 
 </form>
 
+</div>
 
 </div>
 
+</div>
 
 <script>
 
-function changeSize(){
+    let selectedSize = "small";
+    let selectedShipping = "pickup";
 
-let size = document.getElementById("size").value;
+    function selectSize(size){
 
-let paypalForm = document.getElementById("paypalForm");
+    selectedSize = size;
+
+    document.getElementById("smallBtn").classList.remove("selected");
+    document.getElementById("mediumBtn").classList.remove("selected");
+
+    document.getElementById(size + "Btn").classList.add("selected");
+
+    updatePayPal();
+
+}
+
+function selectShipping(ship){
+
+    selectedShipping = ship;
+
+    document.getElementById("pickupBtn").classList.remove("selected");
+    document.getElementById("standardBtn").classList.remove("selected");
+    document.getElementById("ruralBtn").classList.remove("selected");
+
+    document.getElementById(ship + "Btn").classList.add("selected");
+
+    updatePayPal();
+
+}
+
+function updatePayPal(){
+
+    let size = selectedSize;
+    let shipping = selectedShipping;
+
+    let paypalForm = document.getElementById("paypalForm");
+
+    let shippingText = "";
+    let total = "";
 
 
-if(size == "small"){
+    // SMALL
 
-paypalForm.action = "https://www.paypal.com/ncp/payment/DMXAHQHRQG9N2";
+    if(size == "small" && shipping == "pickup"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/DMXAHQHRQG9N2";
+
+        shippingText = "Free Pickup (Lower Hutt)";
+        total = "$39.99 NZD";
+
+    }
+
+    if(size == "small" && shipping == "standard"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/YGUGNWSQ9VBHL";
+
+        shippingText = "Standard Shipping (+$6.50)";
+        total = "$46.49 NZD";
+
+    }
+
+    if(size == "small" && shipping == "rural"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/U5XJMB3BCT6RC";
+
+        shippingText = "Rural Shipping (+$12.50)";
+        total = "$52.49 NZD";
+
+    }
+
+
+    // MEDIUM
+
+    if(size == "medium" && shipping == "pickup"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/Q6EV3CRRMTRC6";
+
+        shippingText = "Free Pickup (Lower Hutt)";
+        total = "$39.99 NZD";
+
+    }
+
+    if(size == "medium" && shipping == "standard"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/U2GX3RBC3BY3C";
+
+        shippingText = "Standard Shipping (+$6.50)";
+        total = "$46.49 NZD";
+
+    }
+
+    if(size == "medium" && shipping == "rural"){
+
+        paypalForm.action = "https://www.paypal.com/ncp/payment/L5LK78296DHPL";
+
+        shippingText = "Rural Shipping (+$12.50)";
+        total = "$52.49 NZD";
+
+    }
+
+
+if(document.getElementById("summaryColour")){
+
+document.getElementById("summaryColour").textContent = "Black";
+
+}
+    if(document.getElementById("summarySize")){
+
+    document.getElementById("summarySize").textContent =
+        size.charAt(0).toUpperCase() + size.slice(1);
 
 }
 
 
-if(size == "medium"){
+if(document.getElementById("summaryShipping")){
 
-paypalForm.action = "https://www.paypal.com/ncp/payment/Q6EV3CRRMTRC6";
+    document.getElementById("summaryShipping").textContent = shippingText;
+
+}
+
+
+if(document.getElementById("summaryTotal")){
+
+    document.getElementById("summaryTotal").textContent = total;
+
+}
+}
+
+updatePayPal();
+
+const productImages = [
+    "Images/pacerteeimage1.jpg",
+    "Images/pacerteeimage2.jpg",
+    "Images/pacerteeimage3.jpg",
+    "Images/pacerteeimage4.jpg",
+    "Images/pacerteeimage5.jpg"
+];
+
+
+let currentImage = 0;
+
+
+function setImage(index){
+
+    currentImage = index;
+
+    let image = document.getElementById("mainImage");
+
+    image.style.opacity = "0";
+
+    setTimeout(function(){
+
+        image.src = productImages[currentImage];
+
+        image.style.opacity = "1";
+
+    },200);
 
 }
 
+
+
+function changeImage(direction){
+
+    currentImage += direction;
+
+
+    if(currentImage < 0){
+
+        currentImage = productImages.length - 1;
+
+    }
+
+
+    if(currentImage >= productImages.length){
+
+        currentImage = 0;
+
+    }
+
+
+    setImage(currentImage);
+
 }
+
+
 
 </script>
 

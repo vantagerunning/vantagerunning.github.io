@@ -10,9 +10,20 @@
 
 <body>
 
-<header>
+    <div class="loader">
+
+    <div class="loader-bg"></div>
+
     <h1>VANTAGE</h1>
- <nav>
+
+</div>
+
+<header>
+
+<a href="index.html" class="logo">
+    VANTAGE
+
+</a> <nav>
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
 <a href="shop.html">Shop</a>
@@ -41,6 +52,22 @@ Shop Now
 </a>
 
 </div>
+
+</section>
+
+<section class="home-intro">
+
+<h2>
+Performance apparel. Built locally.
+</h2>
+
+<p>
+VANTAGE Running creates high quality running gear designed by athletes in the Hutt Valley. Made for training, racing, and everything between.
+</p>
+
+<a href="about.html" class="button">
+Learn More
+</a>
 
 </section>
 
@@ -110,6 +137,94 @@ setInterval(function(){
 
 
 },4000);
+
+
+
+
+</script>
+
+
+<script>
+
+window.addEventListener("load", function () {
+
+    const loader = document.querySelector(".loader");
+    const loaderBg = document.querySelector(".loader-bg");
+    const loaderLogo = document.querySelector(".loader h1");
+    const headerLogo = document.querySelector(".logo");
+
+
+    const start = loaderLogo.getBoundingClientRect();
+    const end = headerLogo.getBoundingClientRect();
+
+
+    const startX = start.left + start.width / 2;
+    const startY = start.top + start.height / 2;
+
+    const endX = end.left + end.width / 2;
+    const endY = end.top + end.height / 2;
+
+
+    const moveX = endX - startX;
+    const moveY = endY - startY;
+
+
+    const scale = end.width / start.width;
+
+
+    loaderLogo.style.transition =
+        "transform 1.6s cubic-bezier(.22,.61,.36,1)";
+
+
+    // Start movement
+    setTimeout(function () {
+
+
+        loaderLogo.style.transform =
+        `
+        translate(${moveX}px, ${moveY}px)
+        scale(${scale})
+        `;
+
+
+    },300);
+
+
+
+    // Fade green earlier
+    setTimeout(function () {
+
+
+        loaderBg.style.transition =
+            "opacity 0.7s ease";
+
+
+        loaderBg.style.opacity = "0";
+
+
+    },600);
+
+
+
+   // Fade logo at the end
+setTimeout(function () {
+
+    loaderLogo.style.transition = "opacity 0.5s ease";
+    loaderLogo.style.opacity = "0";
+
+},2200);
+
+
+// Remove loader
+setTimeout(function () {
+
+    loader.remove();
+
+},2700);
+
+
+
+});
 
 
 </script>
