@@ -98,12 +98,13 @@ Finnigan is 5'9"/176cm and 63kg and wears size Medium.
 </p>
 
 
-<details class="size-guide">
+<div class="size-guide">
 
-<summary>
-Size Guide
-</summary>
+<button class="size-button" onclick="toggleSizeGuide()">
+Size Guide <span id="sizeArrow">+</span>
+</button>
 
+<div class="size-content" id="sizeContent">
 
 <table class="size-table">
 
@@ -136,7 +137,9 @@ Size Guide
 
 </table>
 
-</details>
+</div>
+
+</div>
 
 
 
@@ -402,6 +405,25 @@ function changeImage(direction){
 
 }
 
+
+function toggleSizeGuide(){
+
+    let content = document.getElementById("sizeContent");
+    let arrow = document.getElementById("sizeArrow");
+
+    content.classList.toggle("open");
+
+    if(content.classList.contains("open")){
+
+        arrow.textContent = "−";
+
+    } else {
+
+        arrow.textContent = "+";
+
+    }
+
+}
 
 
 </script>

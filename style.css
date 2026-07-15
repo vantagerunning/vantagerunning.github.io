@@ -1844,55 +1844,100 @@ img {
 
 }
 
-/* SIZE GUIDE DROPDOWN */
+/* =========================
+   SIZE GUIDE
+========================= */
 
 .size-guide {
 
-    margin-top:40px;
-    margin-bottom:20px;
+    margin-top:35px;
+    margin-bottom:25px;
 
 }
 
 
-.size-guide summary {
+.size-button {
 
-    cursor:pointer;
+    width:100%;
 
-    background:#228B6E;
+    background:#f8f8f8;
 
-    color:white;
+    color:black;
 
-    padding:15px 20px;
+    border:1px solid #ddd;
 
-    border-radius:8px;
+    border-radius:10px;
 
-    font-weight:bold;
+    padding:18px 22px;
 
     font-size:18px;
 
-    list-style:none;
+    font-weight:bold;
 
-    width:max-content;
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:.2s;
 
 }
 
 
-.size-guide summary:hover {
+.size-button:hover {
 
-    background:#176b54;
+    border-color:#228B6E;
 
 }
+
+
+.size-button span {
+
+    color:#228B6E;
+
+    font-size:26px;
+
+}
+
+
+
+.size-content {
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .35s ease;
+
+}
+
+
+
+.size-content.open {
+
+    max-height:250px;
+
+}
+
 
 
 .size-table {
 
-    margin-top:20px;
-
     width:100%;
+
+    margin-top:15px;
 
     border-collapse:collapse;
 
+    border-radius:10px;
+
+    overflow:hidden;
+
 }
+
 
 
 .size-table th {
@@ -1903,7 +1948,10 @@ img {
 
     padding:12px;
 
+    text-align:center;
+
 }
+
 
 
 .size-table td {
@@ -1917,11 +1965,13 @@ img {
 }
 
 
-.size-table tr:nth-child(even){
+
+.size-table tr:nth-child(even) {
 
     background:#f8f8f8;
 
 }
+
 
 
 @media(max-width:768px){
@@ -1932,10 +1982,11 @@ img {
 
 }
 
+
 .size-table th,
 .size-table td {
 
-    padding:8px 4px;
+    padding:8px 5px;
 
 }
 
